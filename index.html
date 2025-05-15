@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday</title>
+  <style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #f6d365, #fda085);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 4em;
+    color: white;
+    text-shadow: 2px 2px 10px #ff6f61;
+    animation: glow 2s infinite alternate;
+    margin: 0 10px;
+  }
+
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #ff8c00, 0 0 30px #ff0080;
+    }
+    to {
+      text-shadow: 0 0 20px #ff1493, 0 0 40px #ff69b4, 0 0 60px #ff4500;
+    }
+  }
+
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    animation: fall 3s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(100vh) rotateZ(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* 📱 Responsive Font Size for Smaller Screens */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.8em;
+    }
+  }
+</style>
+
+</head>
+<body>
+  <h1>🎉 Happy Birthday! 🎂</h1>
+
+  <script>
+    // Confetti generator
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      document.body.appendChild(confetti);
+
+      const colors = ['#ff0', '#f0f', '#0ff', '#0f0', '#f00', '#00f'];
+      const left = Math.random() * 100;
+      const size = Math.random() * 10 + 5;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+
+      confetti.style.left = `${left}vw`;
+      confetti.style.width = `${size}px`;
+      confetti.style.height = `${size}px`;
+      confetti.style.backgroundColor = color;
+
+      setTimeout(() => {
+        confetti.remove();
+      }, 3000);
+    }
+
+    // Run confetti forever
+    setInterval(createConfetti, 100);
+  </script>
+</body>
+</html>
